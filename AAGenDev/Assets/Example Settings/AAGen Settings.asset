@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90167117d0064de3a047d40487c986e0, type: 3}
-  m_Name: Aag Settings
+  m_Name: AAGen Settings
   m_EditorClassIdentifier: 
   _InputFilterRules:
   - {fileID: 11400000, guid: be1b9f7a466e72c4cbc83255dc1c2407, type: 2}
