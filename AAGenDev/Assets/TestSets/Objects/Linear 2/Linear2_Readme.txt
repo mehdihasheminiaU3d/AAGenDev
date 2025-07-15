@@ -1,2 +1,2 @@
 Test set: Linear 2
-Purpose: Tests exclusion of a non-source asset
+Purpose: Tests exclusion of a non-source asset using Editor folder
