@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a7e06df7f448b2b4546ea1c74c18a5, type: 3}
+  m_Name: Looped1_InputRule
+  m_EditorClassIdentifier: 
+  m_SelectedAssets:
+  - {fileID: 11400000, guid: ee5d0d73d6602ca429a2d4f7ae48ddc4, type: 2}
+  - {fileID: 11400000, guid: abe6a47b0a1859b4293c813ef83cf0c2, type: 2}
+  - {fileID: 11400000, guid: b8092de6ae9c5ff47885fa9c6c32a5fa, type: 2}
+  - {fileID: 11400000, guid: fa9487fc42c7fa94ea369af884c69312, type: 2}
+  - {fileID: 11400000, guid: f39533bad43440b40bac42f8c45a7e41, type: 2}
+  - {fileID: 11400000, guid: eeec8eaf1b6d95a4eb30f2aaa09e1742, type: 2}
+  - {fileID: 11400000, guid: 92f83fa374842f64fa905f284985ada5, type: 2}
+  - {fileID: 11400000, guid: d06043fbaab01ed4da78c8ac2760f0bf, type: 2}
+  - {fileID: 11400000, guid: 9be2703b5eaf2484a880b7a11ceb5288, type: 2}
+  - {fileID: 11400000, guid: 5c703f82246f3bb4b8f5a6564eaa4b1d, type: 2}
+  - {fileID: 11400000, guid: 428ff5772aa7ba749a8c37512498d4b0, type: 2}
+  m_IncludeCurrentAddressables: 0

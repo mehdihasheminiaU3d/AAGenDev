@@ -11,7 +11,8 @@ public enum GraphTopology
     Tree,
     Cycle,
     Complete,
-    SharedDependency1
+    SharedDependency1,
+    Looped
 }
 
 
@@ -79,6 +80,7 @@ public class TestNodeGeneratorWindow : EditorWindow
             GraphTopology.Cycle => GenerateCycleTopology(),
             GraphTopology.Complete => GenerateCompleteTopology(),
             GraphTopology.SharedDependency1 => GenerateSharedDependencyTopology1(),
+            GraphTopology.Looped => GenerateLoopedTopology1(),
             _ => throw new Exception($"Unexpected enum1")
         };
 
@@ -191,6 +193,35 @@ public class TestNodeGeneratorWindow : EditorWindow
         //second common sources
         nodes[8].ConnectTo(nodes[9]);
         nodes[9].ConnectTo(nodes[5]);
+        
+        return nodes;
+    }
+    
+    List<TestNode> GenerateLoopedTopology1()
+    {
+        var nodes = CreateTestNodes(11);
+      
+        //source of the first branch
+        nodes[0].ConnectTo(nodes[1]);
+        
+        //first loop
+        nodes[1].ConnectTo(nodes[2]);
+        nodes[2].ConnectTo(nodes[3]);
+        nodes[3].ConnectTo(nodes[4]);
+        nodes[4].ConnectTo(nodes[1]);
+        
+        //source of second branch
+        nodes[5].ConnectTo(nodes[6]);
+        nodes[6].ConnectTo(nodes[7]);
+        
+        //second loop
+        nodes[7].ConnectTo(nodes[10]);
+        nodes[10].ConnectTo(nodes[9]);
+        nodes[9].ConnectTo(nodes[8]);
+        nodes[8].ConnectTo(nodes[7]);
+        
+        //connect two branches
+        nodes[10].ConnectTo(nodes[4]);
         
         return nodes;
     }
