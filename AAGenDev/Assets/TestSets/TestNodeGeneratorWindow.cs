@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ public enum GraphTopology
     Star,
     Tree,
     Cycle,
-    Complete
+    Complete,
+    SharedDependency1
 }
 
 
@@ -69,26 +71,16 @@ public class TestNodeGeneratorWindow : EditorWindow
             return;
         }
 
-        List<TestNode> nodes = CreateTestNodes(nodeCount);
-
-        switch (topology)
+        var nodes = topology switch
         {
-            case GraphTopology.Linear:
-                GenerateLinearTopology(nodes);
-                break;
-            case GraphTopology.Star:
-                GenerateStarTopology(nodes);
-                break;
-            case GraphTopology.Tree:
-                GenerateTreeTopology(nodes);
-                break;
-            case GraphTopology.Cycle:
-                GenerateCycleTopology(nodes);
-                break;
-            case GraphTopology.Complete:
-                GenerateCompleteTopology(nodes);
-                break;
-        }
+            GraphTopology.Linear => GenerateLinearTopology(),
+            GraphTopology.Star => GenerateStarTopology(),
+            GraphTopology.Tree => GenerateTreeTopology(),
+            GraphTopology.Cycle => GenerateCycleTopology(),
+            GraphTopology.Complete => GenerateCompleteTopology(),
+            GraphTopology.SharedDependency1 => GenerateSharedDependencyTopology1(),
+            _ => throw new Exception($"Unexpected enum1")
+        };
 
         foreach (var node in nodes)
         {
@@ -116,42 +108,57 @@ public class TestNodeGeneratorWindow : EditorWindow
         return nodes;
     }
 
-    private void GenerateLinearTopology(List<TestNode> nodes)
+    List<TestNode> GenerateLinearTopology()
     {
+        var nodes = CreateTestNodes(nodeCount);
+        
         for (int i = 0; i < nodes.Count - 1; i++)
         {
             nodes[i].Neighbors.Add(nodes[i + 1]);
         }
+
+        return nodes;
     }
 
-    private void GenerateStarTopology(List<TestNode> nodes)
+    List<TestNode> GenerateStarTopology()
     {
+        var nodes = CreateTestNodes(nodeCount);
+        
         var center = nodes[0];
         for (int i = 1; i < nodes.Count; i++)
         {
             center.Neighbors.Add(nodes[i]);
         }
+        return nodes;
     }
 
-    private void GenerateTreeTopology(List<TestNode> nodes)
+    List<TestNode> GenerateTreeTopology()
     {
+        var nodes = CreateTestNodes(nodeCount);
+        
         for (int i = 1; i < nodes.Count; i++)
         {
             int parentIndex = (i - 1) / 2;
             nodes[parentIndex].Neighbors.Add(nodes[i]);
         }
+        return nodes;
     }
 
-    private void GenerateCycleTopology(List<TestNode> nodes)
+    List<TestNode> GenerateCycleTopology()
     {
+        var nodes = CreateTestNodes(nodeCount);
+        
         for (int i = 0; i < nodes.Count; i++)
         {
             nodes[i].Neighbors.Add(nodes[(i + 1) % nodes.Count]);
         }
+        return nodes;
     }
 
-    private void GenerateCompleteTopology(List<TestNode> nodes)
+    List<TestNode> GenerateCompleteTopology()
     {
+        var nodes = CreateTestNodes(nodeCount);
+        
         for (int i = 0; i < nodes.Count; i++)
         {
             for (int j = 0; j < nodes.Count; j++)
@@ -160,6 +167,32 @@ public class TestNodeGeneratorWindow : EditorWindow
                     nodes[i].Neighbors.Add(nodes[j]);
             }
         }
+        return nodes;
+    }
+    
+    List<TestNode> GenerateSharedDependencyTopology1()
+    {
+        var nodes = CreateTestNodes(10);
+        
+        //first common sources
+        nodes[0].ConnectTo(nodes[1]);
+        nodes[7].ConnectTo(nodes[1]);
+        
+        //first shared dependency
+        nodes[1].ConnectTo(nodes[2]);
+        nodes[1].ConnectTo(nodes[3]);
+        nodes[2].ConnectTo(nodes[4]);
+        nodes[3].ConnectTo(nodes[4]);
+        
+        //second shared dependency
+        nodes[4].ConnectTo(nodes[5]);
+        nodes[5].ConnectTo(nodes[6]);
+        
+        //second common sources
+        nodes[8].ConnectTo(nodes[9]);
+        nodes[9].ConnectTo(nodes[5]);
+        
+        return nodes;
     }
 
     private bool IsFolderEmpty(string folder)

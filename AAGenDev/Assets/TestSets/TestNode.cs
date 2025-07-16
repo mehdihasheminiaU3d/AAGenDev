@@ -20,7 +20,10 @@ public class TestNode : ScriptableObject
     public void ConnectTo(TestNode node)
     {
         if (node == null)
+        {
+            Debug.LogError($"node is null!");
             return;
+        }
         
         if (Neighbors.Contains(node))
         {
