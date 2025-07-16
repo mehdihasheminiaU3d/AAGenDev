@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SelectedAssets:
   - {fileID: 11400000, guid: 9b47a9a098e2f4440a5176b07273c03a, type: 2}
-  m_IncludeCurrentAddressables: 1
+  m_IncludeCurrentAddressables: 0

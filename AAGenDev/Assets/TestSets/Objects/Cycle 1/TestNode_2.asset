@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a7e06df7f448b2b4546ea1c74c18a5, type: 3}
-  m_Name: Linear3_InputRule
+  m_Script: {fileID: 11500000, guid: 644feaecb1fc0a3428bd9226a0471efb, type: 3}
+  m_Name: TestNode_2
   m_EditorClassIdentifier: 
-  m_SelectedAssets:
-  - {fileID: 11400000, guid: e3440e34ac7548240b58ff1e00ee6543, type: 2}
-  m_IncludeCurrentAddressables: 0
+  Neighbors:
+  - {fileID: 11400000, guid: ddec33645f3f47d4cbf49a8f1076e60c, type: 2}
