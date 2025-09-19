@@ -2,7 +2,6 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
-using System.IO;
 using AAGen;
 
 public enum GraphTopology
@@ -23,7 +22,7 @@ public class TestNodeGeneratorWindow : EditorWindow
     private int nodeCount = 5;
     private string folderPath = "Assets/";
 
-    [MenuItem("Tools/AAGen/Test Node Generator")]
+    [MenuItem("Tools/Test Node Generator")]
     public static void ShowWindow()
     {
         GetWindow<TestNodeGeneratorWindow>("Test Node Generator");
