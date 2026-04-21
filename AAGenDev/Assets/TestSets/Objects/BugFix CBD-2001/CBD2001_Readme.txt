@@ -1,0 +1,3 @@
+Test set: CBS2001
+Purpose: DependencyGraphCommandQueue.AddAssetToDependencyGraph(...) fails to add an asset when all of its dependencies are skipped. This test set verifies the fix.
+In this case, the prefab has a single dependency —a C# script which is intentionally excluded from the dependency graph since it only tracks non-code assets. Despite this, the prefab itself must still be included in the dependency graph. Because it is also added to the input rule, it should ultimately appear in the generated Addressable groups.
